@@ -47,7 +47,9 @@ def login_interact(ip, user, password, port, cmd):
 
         if ret == 0:
             child.send("{0}\n".format(password))
-            child.interact()
+            # set escape_character to None to avoid 
+            # escape character break the ssh session.
+            child.interact(escape_character = None)
             break
         elif ret == 1:
             child.send("yes\n")
